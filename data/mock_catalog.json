@@ -1,0 +1,964 @@
+{
+ "_warning": "ВЫМЫШЛЕННЫЕ mock-данные для проверки логики. Это НЕ реальные цены, ассортимент и условия доставки сервисов.",
+ "region": "Москва",
+ "fetched_at": "2026-09-28T09:00:00+03:00",
+ "services": {
+  "pyaterochka": {
+   "name": "Пятёрочка",
+   "delivery_fee": 149,
+   "free_delivery_from": 1500,
+   "min_order": 500,
+   "homepage": "https://5ka.ru",
+   "products": [
+    {
+     "id": "pya-milk-0",
+     "name": "Молоко Простоквашино 2,5%",
+     "brand": "Простоквашино",
+     "pack": "930 мл",
+     "price": 89.99,
+     "in_stock": true
+    },
+    {
+     "id": "pya-milk-1",
+     "name": "Молоко Домик в деревне 2,5%",
+     "brand": "Домик в деревне",
+     "pack": "950 мл",
+     "price": 92.99,
+     "in_stock": true
+    },
+    {
+     "id": "pya-milk-2",
+     "name": "Молоко Каждый день 2,5%",
+     "brand": "Каждый день",
+     "pack": "1 л",
+     "price": 70.99,
+     "in_stock": true
+    },
+    {
+     "id": "pya-bread-0",
+     "name": "Хлеб Бородинский Коломенское",
+     "brand": "Коломенское",
+     "pack": "400 г",
+     "price": 64.99,
+     "in_stock": true
+    },
+    {
+     "id": "pya-bread-2",
+     "name": "Хлеб Бородинский Каждый день",
+     "brand": "Каждый день",
+     "pack": "400 г",
+     "price": 42.99,
+     "in_stock": true
+    },
+    {
+     "id": "pya-eggs-1",
+     "name": "Яйца куриные С1 Окское",
+     "brand": "Окское",
+     "pack": "10 шт",
+     "price": 128.99,
+     "in_stock": true
+    },
+    {
+     "id": "pya-banana-0",
+     "name": "Бананы",
+     "brand": "",
+     "pack": "1 кг",
+     "price": 132.99,
+     "in_stock": true
+    },
+    {
+     "id": "pya-cheese-0",
+     "name": "Сыр Российский Брест-Литовск 50%",
+     "brand": "Брест-Литовск",
+     "pack": "200 г",
+     "price": 199.99,
+     "in_stock": true
+    },
+    {
+     "id": "pya-cheese-1",
+     "name": "Сыр Российский Сыробогатов 50%",
+     "brand": "Сыробогатов",
+     "pack": "180 г",
+     "price": 176.99,
+     "in_stock": true
+    },
+    {
+     "id": "pya-cheese-2",
+     "name": "Сыр Российский Arla 50%",
+     "brand": "Arla",
+     "pack": "250 г",
+     "price": 279.99,
+     "in_stock": true
+    },
+    {
+     "id": "pya-buckwheat-1",
+     "name": "Крупа гречневая Увелка",
+     "brand": "Увелка",
+     "pack": "800 г",
+     "price": 123.99,
+     "in_stock": true
+    },
+    {
+     "id": "pya-buckwheat-2",
+     "name": "Крупа гречневая Националь",
+     "brand": "Националь",
+     "pack": "900 г",
+     "price": 144.99,
+     "in_stock": true
+    },
+    {
+     "id": "pya-butter-1",
+     "name": "Масло сливочное Экомилк 82,5%",
+     "brand": "Экомилк",
+     "pack": "180 г",
+     "price": 194.99,
+     "in_stock": true
+    },
+    {
+     "id": "pya-butter-2",
+     "name": "Масло сливочное Брест-Литовск 82,5%",
+     "brand": "Брест-Литовск",
+     "pack": "180 г",
+     "price": 197.99,
+     "in_stock": true
+    },
+    {
+     "id": "pya-chicken-0",
+     "name": "Филе куриное Петелинка охлаждённое",
+     "brand": "Петелинка",
+     "pack": "1 кг",
+     "price": 449.99,
+     "in_stock": true
+    },
+    {
+     "id": "pya-yogurt-2",
+     "name": "Йогурт питьевой Активиа клубника",
+     "brand": "Активиа",
+     "pack": "260 г",
+     "price": 85.99,
+     "in_stock": true
+    },
+    {
+     "id": "pya-water-0",
+     "name": "Вода питьевая Святой источник негазированная",
+     "brand": "Святой источник",
+     "pack": "1,5 л",
+     "price": 60.99,
+     "in_stock": true
+    },
+    {
+     "id": "pya-water-1",
+     "name": "Вода питьевая Шишкин лес негазированная",
+     "brand": "Шишкин лес",
+     "pack": "1,5 л",
+     "price": 52.99,
+     "in_stock": true
+    },
+    {
+     "id": "pya-water-2",
+     "name": "Вода питьевая BonAqua негазированная",
+     "brand": "BonAqua",
+     "pack": "1 л",
+     "price": 60.99,
+     "in_stock": true
+    },
+    {
+     "id": "pya-coffee-0",
+     "name": "Кофе молотый Jacobs Monarch",
+     "brand": "Jacobs Monarch",
+     "pack": "230 г",
+     "price": 508.99,
+     "in_stock": true
+    },
+    {
+     "id": "pya-coffee-1",
+     "name": "Кофе молотый Lavazza Qualita Oro",
+     "brand": "Lavazza Qualita Oro",
+     "pack": "250 г",
+     "price": 740.99,
+     "in_stock": true
+    },
+    {
+     "id": "pya-coffee-2",
+     "name": "Кофе молотый Жокей",
+     "brand": "Жокей",
+     "pack": "250 г",
+     "price": 366.99,
+     "in_stock": true
+    },
+    {
+     "id": "pya-sugar-1",
+     "name": "Сахар-песок Каждый день",
+     "brand": "Каждый день",
+     "pack": "1 кг",
+     "price": 71.99,
+     "in_stock": true
+    }
+   ]
+  },
+  "samokat": {
+   "name": "Самокат",
+   "delivery_fee": 99,
+   "free_delivery_from": 1000,
+   "min_order": 0,
+   "homepage": "https://samokat.ru",
+   "products": [
+    {
+     "id": "sam-milk-1",
+     "name": "Молоко Домик в деревне 2,5%",
+     "brand": "Домик в деревне",
+     "pack": "950 мл",
+     "price": 99.99,
+     "in_stock": true
+    },
+    {
+     "id": "sam-milk-2",
+     "name": "Молоко Каждый день 2,5%",
+     "brand": "Каждый день",
+     "pack": "1 л",
+     "price": 72.99,
+     "in_stock": true
+    },
+    {
+     "id": "sam-bread-0",
+     "name": "Хлеб Бородинский Коломенское",
+     "brand": "Коломенское",
+     "pack": "400 г",
+     "price": 66.99,
+     "in_stock": true
+    },
+    {
+     "id": "sam-eggs-0",
+     "name": "Яйца куриные С1 Роскар",
+     "brand": "Роскар",
+     "pack": "10 шт",
+     "price": 119.99,
+     "in_stock": true
+    },
+    {
+     "id": "sam-eggs-1",
+     "name": "Яйца куриные С1 Окское",
+     "brand": "Окское",
+     "pack": "10 шт",
+     "price": 139.99,
+     "in_stock": true
+    },
+    {
+     "id": "sam-eggs-2",
+     "name": "Яйца куриные С1 Красная цена",
+     "brand": "Красная цена",
+     "pack": "10 шт",
+     "price": 110.99,
+     "in_stock": true
+    },
+    {
+     "id": "sam-banana-0",
+     "name": "Бананы",
+     "brand": "",
+     "pack": "1 кг",
+     "price": 140.99,
+     "in_stock": true
+    },
+    {
+     "id": "sam-cheese-0",
+     "name": "Сыр Российский Брест-Литовск 50%",
+     "brand": "Брест-Литовск",
+     "pack": "200 г",
+     "price": 210.99,
+     "in_stock": true
+    },
+    {
+     "id": "sam-cheese-1",
+     "name": "Сыр Российский Сыробогатов 50%",
+     "brand": "Сыробогатов",
+     "pack": "180 г",
+     "price": 193.99,
+     "in_stock": true
+    },
+    {
+     "id": "sam-buckwheat-0",
+     "name": "Крупа гречневая Мистраль",
+     "brand": "Мистраль",
+     "pack": "900 г",
+     "price": 158.99,
+     "in_stock": true
+    },
+    {
+     "id": "sam-buckwheat-2",
+     "name": "Крупа гречневая Националь",
+     "brand": "Националь",
+     "pack": "900 г",
+     "price": 140.99,
+     "in_stock": true
+    },
+    {
+     "id": "sam-butter-0",
+     "name": "Масло сливочное Простоквашино 82,5%",
+     "brand": "Простоквашино",
+     "pack": "180 г",
+     "price": 252.99,
+     "in_stock": true
+    },
+    {
+     "id": "sam-butter-1",
+     "name": "Масло сливочное Экомилк 82,5%",
+     "brand": "Экомилк",
+     "pack": "180 г",
+     "price": 213.99,
+     "in_stock": true
+    },
+    {
+     "id": "sam-chicken-0",
+     "name": "Филе куриное Петелинка охлаждённое",
+     "brand": "Петелинка",
+     "pack": "1 кг",
+     "price": 497.99,
+     "in_stock": true
+    },
+    {
+     "id": "sam-chicken-1",
+     "name": "Филе куриное Приосколье охлаждённое",
+     "brand": "Приосколье",
+     "pack": "700 г",
+     "price": 346.99,
+     "in_stock": true
+    },
+    {
+     "id": "sam-yogurt-0",
+     "name": "Йогурт питьевой Даниссимо клубника",
+     "brand": "Даниссимо",
+     "pack": "260 г",
+     "price": 90.99,
+     "in_stock": true
+    },
+    {
+     "id": "sam-yogurt-1",
+     "name": "Йогурт питьевой Чудо клубника",
+     "brand": "Чудо",
+     "pack": "270 г",
+     "price": 96.99,
+     "in_stock": true
+    },
+    {
+     "id": "sam-yogurt-2",
+     "name": "Йогурт питьевой Активиа клубника",
+     "brand": "Активиа",
+     "pack": "260 г",
+     "price": 101.99,
+     "in_stock": true
+    },
+    {
+     "id": "sam-water-0",
+     "name": "Вода питьевая Святой источник негазированная",
+     "brand": "Святой источник",
+     "pack": "1,5 л",
+     "price": 67.99,
+     "in_stock": true
+    },
+    {
+     "id": "sam-water-1",
+     "name": "Вода питьевая Шишкин лес негазированная",
+     "brand": "Шишкин лес",
+     "pack": "1,5 л",
+     "price": 58.99,
+     "in_stock": true
+    },
+    {
+     "id": "sam-water-2",
+     "name": "Вода питьевая BonAqua негазированная",
+     "brand": "BonAqua",
+     "pack": "1 л",
+     "price": 68.99,
+     "in_stock": true
+    },
+    {
+     "id": "sam-coffee-0",
+     "name": "Кофе молотый Jacobs Monarch",
+     "brand": "Jacobs Monarch",
+     "pack": "230 г",
+     "price": 516.99,
+     "in_stock": true
+    },
+    {
+     "id": "sam-coffee-1",
+     "name": "Кофе молотый Lavazza Qualita Oro",
+     "brand": "Lavazza Qualita Oro",
+     "pack": "250 г",
+     "price": 732.99,
+     "in_stock": true
+    },
+    {
+     "id": "sam-sugar-0",
+     "name": "Сахар-песок Русский сахар",
+     "brand": "Русский сахар",
+     "pack": "1 кг",
+     "price": 98.99,
+     "in_stock": true
+    },
+    {
+     "id": "sam-sugar-1",
+     "name": "Сахар-песок Каждый день",
+     "brand": "Каждый день",
+     "pack": "1 кг",
+     "price": 78.99,
+     "in_stock": true
+    }
+   ]
+  },
+  "lavka": {
+   "name": "Яндекс Лавка",
+   "delivery_fee": 159,
+   "free_delivery_from": 1200,
+   "min_order": 0,
+   "homepage": "https://lavka.yandex.ru",
+   "products": [
+    {
+     "id": "lav-milk-1",
+     "name": "Молоко Домик в деревне 2,5%",
+     "brand": "Домик в деревне",
+     "pack": "950 мл",
+     "price": 115.99,
+     "in_stock": true
+    },
+    {
+     "id": "lav-bread-1",
+     "name": "Хлеб Бородинский Хлебный дом",
+     "brand": "Хлебный дом",
+     "pack": "350 г",
+     "price": 60.99,
+     "in_stock": true
+    },
+    {
+     "id": "lav-bread-2",
+     "name": "Хлеб Бородинский Каждый день",
+     "brand": "Каждый день",
+     "pack": "400 г",
+     "price": 47.99,
+     "in_stock": true
+    },
+    {
+     "id": "lav-eggs-0",
+     "name": "Яйца куриные С1 Роскар",
+     "brand": "Роскар",
+     "pack": "10 шт",
+     "price": 136.99,
+     "in_stock": true
+    },
+    {
+     "id": "lav-eggs-1",
+     "name": "Яйца куриные С1 Окское",
+     "brand": "Окское",
+     "pack": "10 шт",
+     "price": 141.99,
+     "in_stock": true
+    },
+    {
+     "id": "lav-eggs-2",
+     "name": "Яйца куриные С1 Красная цена",
+     "brand": "Красная цена",
+     "pack": "10 шт",
+     "price": 114.99,
+     "in_stock": true
+    },
+    {
+     "id": "lav-banana-0",
+     "name": "Бананы",
+     "brand": "",
+     "pack": "1 кг",
+     "price": 147.99,
+     "in_stock": true
+    },
+    {
+     "id": "lav-butter-1",
+     "name": "Масло сливочное Экомилк 82,5%",
+     "brand": "Экомилк",
+     "pack": "180 г",
+     "price": 215.99,
+     "in_stock": true
+    },
+    {
+     "id": "lav-butter-2",
+     "name": "Масло сливочное Брест-Литовск 82,5%",
+     "brand": "Брест-Литовск",
+     "pack": "180 г",
+     "price": 222.99,
+     "in_stock": true
+    },
+    {
+     "id": "lav-chicken-1",
+     "name": "Филе куриное Приосколье охлаждённое",
+     "brand": "Приосколье",
+     "pack": "700 г",
+     "price": 392.99,
+     "in_stock": true
+    },
+    {
+     "id": "lav-yogurt-0",
+     "name": "Йогурт питьевой Даниссимо клубника",
+     "brand": "Даниссимо",
+     "pack": "260 г",
+     "price": 84.99,
+     "in_stock": true
+    },
+    {
+     "id": "lav-coffee-0",
+     "name": "Кофе молотый Jacobs Monarch",
+     "brand": "Jacobs Monarch",
+     "pack": "230 г",
+     "price": 539.99,
+     "in_stock": true
+    },
+    {
+     "id": "lav-coffee-1",
+     "name": "Кофе молотый Lavazza Qualita Oro",
+     "brand": "Lavazza Qualita Oro",
+     "pack": "250 г",
+     "price": 741.99,
+     "in_stock": true
+    },
+    {
+     "id": "lav-coffee-2",
+     "name": "Кофе молотый Жокей",
+     "brand": "Жокей",
+     "pack": "250 г",
+     "price": 382.99,
+     "in_stock": true
+    },
+    {
+     "id": "lav-sugar-0",
+     "name": "Сахар-песок Русский сахар",
+     "brand": "Русский сахар",
+     "pack": "1 кг",
+     "price": 99.99,
+     "in_stock": true
+    },
+    {
+     "id": "lav-sugar-1",
+     "name": "Сахар-песок Каждый день",
+     "brand": "Каждый день",
+     "pack": "1 кг",
+     "price": 78.99,
+     "in_stock": true
+    }
+   ]
+  },
+  "vkusvill": {
+   "name": "ВкусВилл",
+   "delivery_fee": 199,
+   "free_delivery_from": 1500,
+   "min_order": 700,
+   "homepage": "https://vkusvill.ru",
+   "products": [
+    {
+     "id": "vku-milk-1",
+     "name": "Молоко Домик в деревне 2,5%",
+     "brand": "Домик в деревне",
+     "pack": "950 мл",
+     "price": 115.99,
+     "in_stock": true
+    },
+    {
+     "id": "vku-milk-2",
+     "name": "Молоко Каждый день 2,5%",
+     "brand": "Каждый день",
+     "pack": "1 л",
+     "price": 77.99,
+     "in_stock": true
+    },
+    {
+     "id": "vku-milk-3",
+     "name": "Молоко ВкусВилл 2,5%",
+     "brand": "ВкусВилл",
+     "pack": "1 л",
+     "price": 107.99,
+     "in_stock": true
+    },
+    {
+     "id": "vku-bread-0",
+     "name": "Хлеб Бородинский Коломенское",
+     "brand": "Коломенское",
+     "pack": "400 г",
+     "price": 65.99,
+     "in_stock": true
+    },
+    {
+     "id": "vku-bread-1",
+     "name": "Хлеб Бородинский Хлебный дом",
+     "brand": "Хлебный дом",
+     "pack": "350 г",
+     "price": 61.99,
+     "in_stock": true
+    },
+    {
+     "id": "vku-eggs-0",
+     "name": "Яйца куриные С1 Роскар",
+     "brand": "Роскар",
+     "pack": "10 шт",
+     "price": 129.99,
+     "in_stock": true
+    },
+    {
+     "id": "vku-eggs-1",
+     "name": "Яйца куриные С1 Окское",
+     "brand": "Окское",
+     "pack": "10 шт",
+     "price": 128.99,
+     "in_stock": true
+    },
+    {
+     "id": "vku-eggs-2",
+     "name": "Яйца куриные С1 Красная цена",
+     "brand": "Красная цена",
+     "pack": "10 шт",
+     "price": 109.99,
+     "in_stock": true
+    },
+    {
+     "id": "vku-banana-0",
+     "name": "Бананы",
+     "brand": "",
+     "pack": "1 кг",
+     "price": 150.99,
+     "in_stock": true
+    },
+    {
+     "id": "vku-cheese-0",
+     "name": "Сыр Российский Брест-Литовск 50%",
+     "brand": "Брест-Литовск",
+     "pack": "200 г",
+     "price": 221.99,
+     "in_stock": true
+    },
+    {
+     "id": "vku-cheese-1",
+     "name": "Сыр Российский Сыробогатов 50%",
+     "brand": "Сыробогатов",
+     "pack": "180 г",
+     "price": 172.99,
+     "in_stock": true
+    },
+    {
+     "id": "vku-cheese-2",
+     "name": "Сыр Российский Arla 50%",
+     "brand": "Arla",
+     "pack": "250 г",
+     "price": 311.99,
+     "in_stock": true
+    },
+    {
+     "id": "vku-buckwheat-0",
+     "name": "Крупа гречневая Мистраль",
+     "brand": "Мистраль",
+     "pack": "900 г",
+     "price": 153.99,
+     "in_stock": true
+    },
+    {
+     "id": "vku-butter-1",
+     "name": "Масло сливочное Экомилк 82,5%",
+     "brand": "Экомилк",
+     "pack": "180 г",
+     "price": 219.99,
+     "in_stock": true
+    },
+    {
+     "id": "vku-chicken-0",
+     "name": "Филе куриное Петелинка охлаждённое",
+     "brand": "Петелинка",
+     "pack": "1 кг",
+     "price": 526.99,
+     "in_stock": true
+    },
+    {
+     "id": "vku-chicken-1",
+     "name": "Филе куриное Приосколье охлаждённое",
+     "brand": "Приосколье",
+     "pack": "700 г",
+     "price": 373.99,
+     "in_stock": true
+    },
+    {
+     "id": "vku-yogurt-1",
+     "name": "Йогурт питьевой Чудо клубника",
+     "brand": "Чудо",
+     "pack": "270 г",
+     "price": 98.99,
+     "in_stock": true
+    },
+    {
+     "id": "vku-yogurt-2",
+     "name": "Йогурт питьевой Активиа клубника",
+     "brand": "Активиа",
+     "pack": "260 г",
+     "price": 97.99,
+     "in_stock": true
+    },
+    {
+     "id": "vku-water-0",
+     "name": "Вода питьевая Святой источник негазированная",
+     "brand": "Святой источник",
+     "pack": "1,5 л",
+     "price": 67.99,
+     "in_stock": true
+    },
+    {
+     "id": "vku-water-2",
+     "name": "Вода питьевая BonAqua негазированная",
+     "brand": "BonAqua",
+     "pack": "1 л",
+     "price": 72.99,
+     "in_stock": true
+    },
+    {
+     "id": "vku-coffee-0",
+     "name": "Кофе молотый Jacobs Monarch",
+     "brand": "Jacobs Monarch",
+     "pack": "230 г",
+     "price": 554.99,
+     "in_stock": true
+    },
+    {
+     "id": "vku-coffee-1",
+     "name": "Кофе молотый Lavazza Qualita Oro",
+     "brand": "Lavazza Qualita Oro",
+     "pack": "250 г",
+     "price": 759.99,
+     "in_stock": true
+    },
+    {
+     "id": "vku-coffee-2",
+     "name": "Кофе молотый Жокей",
+     "brand": "Жокей",
+     "pack": "250 г",
+     "price": 383.99,
+     "in_stock": true
+    },
+    {
+     "id": "vku-sugar-0",
+     "name": "Сахар-песок Русский сахар",
+     "brand": "Русский сахар",
+     "pack": "1 кг",
+     "price": 93.99,
+     "in_stock": true
+    },
+    {
+     "id": "vku-sugar-1",
+     "name": "Сахар-песок Каждый день",
+     "brand": "Каждый день",
+     "pack": "1 кг",
+     "price": 85.99,
+     "in_stock": true
+    }
+   ]
+  },
+  "chizhik": {
+   "name": "Чижик",
+   "delivery_fee": 199,
+   "free_delivery_from": 2000,
+   "min_order": 1000,
+   "homepage": "https://chizhik.club",
+   "products": [
+    {
+     "id": "chi-milk-0",
+     "name": "Молоко Простоквашино 2,5%",
+     "brand": "Простоквашино",
+     "pack": "930 мл",
+     "price": 80.99,
+     "in_stock": true
+    },
+    {
+     "id": "chi-bread-0",
+     "name": "Хлеб Бородинский Коломенское",
+     "brand": "Коломенское",
+     "pack": "400 г",
+     "price": 54.99,
+     "in_stock": true
+    },
+    {
+     "id": "chi-bread-1",
+     "name": "Хлеб Бородинский Хлебный дом",
+     "brand": "Хлебный дом",
+     "pack": "350 г",
+     "price": 49.99,
+     "in_stock": true
+    },
+    {
+     "id": "chi-bread-2",
+     "name": "Хлеб Бородинский Каждый день",
+     "brand": "Каждый день",
+     "pack": "400 г",
+     "price": 38.99,
+     "in_stock": true
+    },
+    {
+     "id": "chi-eggs-0",
+     "name": "Яйца куриные С1 Роскар",
+     "brand": "Роскар",
+     "pack": "10 шт",
+     "price": 108.99,
+     "in_stock": true
+    },
+    {
+     "id": "chi-eggs-1",
+     "name": "Яйца куриные С1 Окское",
+     "brand": "Окское",
+     "pack": "10 шт",
+     "price": 107.99,
+     "in_stock": true
+    },
+    {
+     "id": "chi-eggs-2",
+     "name": "Яйца куриные С1 Красная цена",
+     "brand": "Красная цена",
+     "pack": "10 шт",
+     "price": 79.99,
+     "in_stock": true
+    },
+    {
+     "id": "chi-banana-0",
+     "name": "Бананы",
+     "brand": "",
+     "pack": "1 кг",
+     "price": 114.99,
+     "in_stock": true
+    },
+    {
+     "id": "chi-cheese-0",
+     "name": "Сыр Российский Брест-Литовск 50%",
+     "brand": "Брест-Литовск",
+     "pack": "200 г",
+     "price": 185.99,
+     "in_stock": true
+    },
+    {
+     "id": "chi-cheese-1",
+     "name": "Сыр Российский Сыробогатов 50%",
+     "brand": "Сыробогатов",
+     "pack": "180 г",
+     "price": 148.99,
+     "in_stock": true
+    },
+    {
+     "id": "chi-cheese-2",
+     "name": "Сыр Российский Arla 50%",
+     "brand": "Arla",
+     "pack": "250 г",
+     "price": 260.99,
+     "in_stock": true
+    },
+    {
+     "id": "chi-buckwheat-1",
+     "name": "Крупа гречневая Увелка",
+     "brand": "Увелка",
+     "pack": "800 г",
+     "price": 97.99,
+     "in_stock": true
+    },
+    {
+     "id": "chi-buckwheat-2",
+     "name": "Крупа гречневая Националь",
+     "brand": "Националь",
+     "pack": "900 г",
+     "price": 123.99,
+     "in_stock": true
+    },
+    {
+     "id": "chi-butter-0",
+     "name": "Масло сливочное Простоквашино 82,5%",
+     "brand": "Простоквашино",
+     "pack": "180 г",
+     "price": 179.99,
+     "in_stock": true
+    },
+    {
+     "id": "chi-butter-1",
+     "name": "Масло сливочное Экомилк 82,5%",
+     "brand": "Экомилк",
+     "pack": "180 г",
+     "price": 186.99,
+     "in_stock": true
+    },
+    {
+     "id": "chi-butter-2",
+     "name": "Масло сливочное Брест-Литовск 82,5%",
+     "brand": "Брест-Литовск",
+     "pack": "180 г",
+     "price": 188.99,
+     "in_stock": true
+    },
+    {
+     "id": "chi-chicken-1",
+     "name": "Филе куриное Приосколье охлаждённое",
+     "brand": "Приосколье",
+     "pack": "700 г",
+     "price": 283.99,
+     "in_stock": true
+    },
+    {
+     "id": "chi-yogurt-0",
+     "name": "Йогурт питьевой Даниссимо клубника",
+     "brand": "Даниссимо",
+     "pack": "260 г",
+     "price": 71.99,
+     "in_stock": true
+    },
+    {
+     "id": "chi-yogurt-2",
+     "name": "Йогурт питьевой Активиа клубника",
+     "brand": "Активиа",
+     "pack": "260 г",
+     "price": 82.99,
+     "in_stock": true
+    },
+    {
+     "id": "chi-water-0",
+     "name": "Вода питьевая Святой источник негазированная",
+     "brand": "Святой источник",
+     "pack": "1,5 л",
+     "price": 50.99,
+     "in_stock": true
+    },
+    {
+     "id": "chi-water-1",
+     "name": "Вода питьевая Шишкин лес негазированная",
+     "brand": "Шишкин лес",
+     "pack": "1,5 л",
+     "price": 45.99,
+     "in_stock": true
+    },
+    {
+     "id": "chi-coffee-0",
+     "name": "Кофе молотый Jacobs Monarch",
+     "brand": "Jacobs Monarch",
+     "pack": "230 г",
+     "price": 440.99,
+     "in_stock": true
+    },
+    {
+     "id": "chi-coffee-2",
+     "name": "Кофе молотый Жокей",
+     "brand": "Жокей",
+     "pack": "250 г",
+     "price": 292.99,
+     "in_stock": true
+    },
+    {
+     "id": "chi-sugar-0",
+     "name": "Сахар-песок Русский сахар",
+     "brand": "Русский сахар",
+     "pack": "1 кг",
+     "price": 78.99,
+     "in_stock": true
+    },
+    {
+     "id": "chi-sugar-1",
+     "name": "Сахар-песок Каждый день",
+     "brand": "Каждый день",
+     "pack": "1 кг",
+     "price": 69.99,
+     "in_stock": true
+    }
+   ]
+  }
+ }
+}
