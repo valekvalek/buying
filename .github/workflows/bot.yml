@@ -1,0 +1,52 @@
+name: Запуск бота
+
+# Запуск вручную: вкладка Actions → «Запуск бота» → Run workflow.
+# Токен бота берётся из секрета репозитория TELEGRAM_BOT_TOKEN (Settings → Secrets and variables → Actions).
+# Бот работает, пока идёт запуск (не дольше 5 ч 50 мин — лимит GitHub Actions 6 ч), потом останавливается.
+on:
+  workflow_dispatch:
+    inputs:
+      minutes:
+        description: "Сколько минут работать (1–350)"
+        required: true
+        default: "60"
+
+# Одновременно может работать только один экземпляр бота: новый запуск останавливает старый
+concurrency:
+  group: telegram-bot
+  cancel-in-progress: true
+
+jobs:
+  bot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: python -m pytest -q
+      - name: Работа бота
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          REGION: Москва
+          MINUTES: ${{ inputs.minutes }}
+        run: |
+          if [ -z "$TELEGRAM_BOT_TOKEN" ]; then
+            echo "::error::Нет секрета TELEGRAM_BOT_TOKEN. Добавьте его: Settings → Secrets and variables → Actions → New repository secret"
+            exit 1
+          fi
+          if ! [[ "$MINUTES" =~ ^[0-9]+$ ]] || [ "$MINUTES" -lt 1 ] || [ "$MINUTES" -gt 350 ]; then
+            echo "::error::minutes должно быть числом от 1 до 350"
+            exit 1
+          fi
+          echo "Бот работает $MINUTES мин."
+          set +e
+          timeout -s INT "${MINUTES}m" python bot.py
+          code=$?
+          # 124 — бот остановлен по таймеру, это нормальное завершение
+          if [ "$code" -eq 124 ] || [ "$code" -eq 0 ]; then exit 0; fi
+          exit "$code"
