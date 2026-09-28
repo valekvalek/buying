@@ -34,10 +34,22 @@ class Pack:
         return f"{self.amount:g} {self.unit}"
 
 
+MULTI_PACK_RE = re.compile(
+    r"(\d+)\s*[xх×*]\s*(\d+(?:[.,]\d+)?)\s*(кг|kg|гр|г|g|мл|ml|л|l)\.?(?![a-zа-яё])",
+    re.IGNORECASE,
+)
+
+
 def parse_pack(text: str) -> Optional[Pack]:
-    """Находит фасовку в строке: '930 мл' -> Pack(0.93, 'л'). Берёт последнее совпадение."""
+    """Находит фасовку в строке: '930 мл' -> Pack(0.93, 'л'), '5х80 г' -> Pack(0.4, 'кг').
+    Берёт последнее совпадение."""
     if not text:
         return None
+    multi = MULTI_PACK_RE.findall(text)
+    if multi:
+        count, number, unit = multi[-1]
+        base, factor = _UNITS[unit.lower()]
+        return Pack(round(int(count) * float(number.replace(",", ".")) * factor, 6), base)
     found = PACK_RE.findall(text)
     if not found:
         return None

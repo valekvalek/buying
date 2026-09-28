@@ -2,12 +2,12 @@
 from __future__ import annotations
 
 import json
-import re
 from functools import lru_cache
 from pathlib import Path
 
 from models import DeliveryTerms, Offer
 from providers.base import PriceProvider
+from textnorm import stems
 from units import parse_pack
 
 CATALOG_PATH = Path(__file__).resolve().parent.parent / "data" / "mock_catalog.json"
@@ -17,12 +17,6 @@ CATALOG_PATH = Path(__file__).resolve().parent.parent / "data" / "mock_catalog.j
 def load_catalog() -> dict:
     with open(CATALOG_PATH, encoding="utf-8") as f:
         return json.load(f)
-
-
-def stems(text: str) -> set[str]:
-    """Грубая «основа» слов: первые 5 букв. Для mock-поиска этого достаточно."""
-    words = re.findall(r"[a-zа-яё]+", text.lower().replace("ё", "е"))
-    return {w[:5] for w in words if len(w) >= 3}
 
 
 class MockProvider(PriceProvider):

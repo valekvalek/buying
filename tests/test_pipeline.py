@@ -108,5 +108,5 @@ def test_full_pipeline_without_llm(monkeypatch):
     items = parse_text((DATA / "sample_cart.txt").read_text(encoding="utf-8"))
     text = "\n".join(analyze(items, "Москва"))
     assert "ВСЁ ИЗ ОДНОГО МАГАЗИНА" in text and "РАЗБИТЬ МЕЖДУ ДВУМЯ" in text
-    assert "ЭКОНОМИЯ" in text and "[uncertain]" in text and "ВЫМЫШЛЕННЫЕ" in text
+    assert "ЭКОНОМИЯ" in text and "«аналог»" in text and "ВЫМЫШЛЕННЫЕ" in text
     assert "Москва" in text and "2026-09-28" in text   # регион и дата цен видны в отчёте

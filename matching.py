@@ -1,10 +1,10 @@
 """Сопоставление позиций корзины с товарами сервисов.
 
-1. Провайдер каждого сервиса отдаёт до 5 кандидатов по названию.
-2. LLM выбирает лучшего кандидата: точное совпадение, аналог или «нет».
-3. Код ПРОВЕРЯЕТ ответ LLM: единицы измерения, фасовку, бренд, цену за кг/л.
+1. Провайдер каждого сервиса отдаёт до 10 кандидатов по названию.
+2. Лучший кандидат выбирается по правилам (rules.py) — это основной режим, API не нужен.
+   Если задан ANTHROPIC_API_KEY, выбор делает LLM (необязательно).
+3. Код проверяет выбор: единицы измерения, фасовку, бренд, цену за кг/л.
    Всё сомнительное помечается [uncertain].
-Без ANTHROPIC_API_KEY работает простой подбор по словам, и тогда ВСЕ совпадения [uncertain].
 """
 from __future__ import annotations
 
@@ -15,7 +15,7 @@ import config
 from llm import LLMError, ask_json
 from models import CartItem, Match, Offer
 from providers.base import PriceProvider
-from providers.mock_provider import stems
+from rules import best_offer
 from units import packs_needed, same_pack, unit_price
 
 log = logging.getLogger(__name__)
@@ -119,41 +119,29 @@ def _match_llm(item: CartItem, candidates: dict[str, list[Offer]]) -> dict[str, 
     return out
 
 
-def _match_heuristic(item: CartItem, candidates: dict[str, list[Offer]]) -> dict[str, Match]:
-    """Запасной вариант без LLM: совпадение по словам. Всё помечается [uncertain]."""
-    q = stems(item.name)
-    kind_word = next(iter(sorted(stems(item.name.split()[0])) or [""]), "")   # «молоко», «сыр»…
+def _match_rules(item: CartItem, candidates: dict[str, list[Offer]]) -> dict[str, Match]:
+    """Основной режим без LLM: выбор по правилам из rules.py."""
     out = {}
     for sid, offers in candidates.items():
-        best, best_score = None, 0.0
-        for o in offers:
-            s = stems(o.name + " " + o.brand)
-            if kind_word and kind_word not in s:
-                continue   # другой тип продукта (сыр ≠ масло того же бренда)
-            score = len(q & s) / max(1, len(q | s))
-            if score > best_score:
-                best, best_score = o, score
-        if best is None or best_score < 0.2:
+        found = best_offer(item, offers)
+        if not found:
             continue
-        # бренд может быть только в названии (у ВкусВилла нет отдельного поля бренда)
-        same_brand = item.brand.lower() == best.brand.lower() or (
-            bool(item.brand) and not best.brand and item.brand.lower() in best.name.lower())
-        exact = same_brand and same_pack(item.pack, best.pack)
-        m = validate(item, best, "exact" if exact else "analog", "", confidence=0.0)
-        m.reasons.insert(0, "подобрано без LLM, по словам в названии")
-        out[sid] = m
+        offer, value, reasons = found
+        kind = "analog" if reasons else "exact"
+        # балл 0.75+ — уверенное совпадение; ниже — validate() пометит [uncertain]
+        out[sid] = validate(item, offer, kind, "; ".join(reasons), confidence=value)
     return out
 
 
 def match_item(item: CartItem, providers: dict[str, PriceProvider], region: str) -> dict[str, Match]:
-    query = f"{item.name} {item.brand}".strip()
-    candidates = {sid: p.search(query, region) for sid, p in providers.items()}
+    query = item.name if item.brand.lower() in item.name.lower() else f"{item.name} {item.brand}".strip()
+    candidates = {sid: p.search(query, region, limit=10) for sid, p in providers.items()}
     if config.LLM_ENABLED:
         try:
             return _match_llm(item, candidates)
         except LLMError as e:
-            log.warning("LLM недоступна (%s), использую подбор по словам", e)
-    return _match_heuristic(item, candidates)
+            log.warning("LLM недоступна (%s), использую подбор по правилам", e)
+    return _match_rules(item, candidates)
 
 
 def match_cart(items: list[CartItem], providers: dict[str, PriceProvider], region: str) -> list[dict[str, Match]]:

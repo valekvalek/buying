@@ -28,10 +28,10 @@ HELP = """Пришлите корзину одним из способов:
 Хлеб Бородинский Коломенское 400 г — 1 шт — 59.90 ₽
 
 2) Файлом CSV с колонками: название, бренд, фасовка, количество, цена, сервис
-3) Скриншотом корзины (нужен ключ ANTHROPIC_API_KEY)
+3) Скриншотом корзины — только если задан ключ ANTHROPIC_API_KEY (необязательно)
 
 Я сопоставлю товары в Пятёрочке, Самокате, Яндекс Лавке, ВкусВилле и Чижике и посчитаю, где дешевле.
-⚠️ Сейчас цены — mock-данные (вымышленные)."""
+ВкусВилл — реальные цены, остальные сервисы — mock-данные (вымышленные)."""
 
 
 def _chunks(text: str) -> list[str]:
@@ -56,7 +56,7 @@ async def _run(update: Update, items) -> None:
         return
     await update.message.reply_text(
         f"Нашёл позиций: {len(items)}. Сопоставляю товары"
-        + (" через LLM…" if config.LLM_ENABLED else " (без LLM — все совпадения будут [uncertain])…"))
+        + (" через LLM…" if config.LLM_ENABLED else " по правилам…"))
     try:
         messages = await asyncio.to_thread(analyze, items, config.REGION)
     except Exception:
@@ -115,7 +115,7 @@ def main() -> None:
     if not config.TELEGRAM_BOT_TOKEN:
         raise SystemExit("Не задан TELEGRAM_BOT_TOKEN. Скопируйте .env.example в .env и впишите токен.")
     if not config.LLM_ENABLED:
-        log.warning("ANTHROPIC_API_KEY не задан: сопоставление по словам, скриншоты не работают.")
+        log.info("Работаю без LLM: сопоставление по правилам, скриншоты недоступны.")
     app = Application.builder().token(config.TELEGRAM_BOT_TOKEN).build()
     app.add_handler(CommandHandler(["start", "help"], cmd_start))
     app.add_handler(MessageHandler(filters.PHOTO, on_photo))
