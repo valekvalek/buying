@@ -48,6 +48,7 @@ class DeliveryTerms:
     region: str
     fetched_at: str
     source: str
+    unknown: bool = False   # условия доставки неизвестны и не учитываются
 
     def fee_for(self, subtotal: float) -> float:
         if self.free_delivery_from is not None and subtotal >= self.free_delivery_from:

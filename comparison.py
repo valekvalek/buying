@@ -17,6 +17,7 @@ class StoreOrder:
     subtotal: float
     delivery: float
     min_order: float
+    delivery_unknown: bool = False
 
     @property
     def total(self) -> float:
@@ -58,7 +59,7 @@ class Comparison:
 
 def _order(service: str, matches: list[Match], terms: DeliveryTerms) -> StoreOrder:
     subtotal = round(sum(m.cost for m in matches), 2)
-    return StoreOrder(service, matches, subtotal, terms.fee_for(subtotal), terms.min_order)
+    return StoreOrder(service, matches, subtotal, terms.fee_for(subtotal), terms.min_order, terms.unknown)
 
 
 def single_store(sid: str, items: list[CartItem], matched: list[dict[str, Match]],

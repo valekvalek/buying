@@ -25,6 +25,8 @@ def _match_line(m: Match) -> str:
         head += f", {o.pack}"
     qty = f"{m.packs_needed:g} кг" if o.by_weight else f"{m.packs_needed:g}"
     head += f" — {rub(o.price)}{'/кг' if o.by_weight else ''} × {qty} = {rub(m.cost)}{_unit_price_text(o.price, o)}"
+    if o.source == "user-cart":
+        head += f" (цена из вашей корзины от {o.fetched_at[:10]})"
     tags = []
     if m.kind == "analog":
         tags.append("«аналог»")
@@ -57,8 +59,11 @@ def matches_section(items: list[CartItem], matched: list[dict[str, Match]], serv
 def _option_text(opt: Option) -> str:
     parts = []
     for o in opt.orders:
-        line = (f"{display_name(o.service)}: товары {rub(o.subtotal)} + доставка "
-                f"{rub(o.delivery) if o.delivery else 'бесплатно'} = {rub(o.total)}")
+        if o.delivery_unknown:
+            delivery = "доставка не учтена (неизвестна)"
+        else:
+            delivery = f"доставка {rub(o.delivery) if o.delivery else 'бесплатно'}"
+        line = f"{display_name(o.service)}: товары {rub(o.subtotal)} + {delivery} = {rub(o.total)}"
         if o.below_min:
             line += f" ⚠️ не набрана мин. сумма заказа {rub(o.min_order)} (не хватает {rub(o.below_min)})"
         parts.append(line)

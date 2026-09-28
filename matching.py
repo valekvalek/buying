@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import logging
 from concurrent.futures import ThreadPoolExecutor
+from datetime import date
 
 import config
 from llm import LLMError, ask_json
@@ -21,6 +22,7 @@ from units import packs_needed, same_pack, unit_price
 log = logging.getLogger(__name__)
 
 MIN_CONFIDENCE = 0.75
+STALE_DAYS = 30             # цена из вашей корзины старше месяца — [uncertain]
 MAX_UNIT_PRICE_RATIO = 2.5   # цена за кг/л отличается больше чем в 2.5 раза -> подозрительно
 
 SCHEMA = {
@@ -83,6 +85,15 @@ def validate(item: CartItem, offer: Offer, kind: str, reason: str, confidence: f
         if item.pack and offer.pack and not same_pack(item.pack, offer.pack):
             kind = "analog"
             reasons.append(f"другая фасовка ({offer.pack} вместо {item.pack})")
+
+    if offer.source == "user-cart" and offer.fetched_at:
+        try:
+            age = (date.today() - date.fromisoformat(offer.fetched_at[:10])).days
+        except ValueError:
+            age = 0
+        if age > STALE_DAYS:
+            uncertain = True
+            reasons.append(f"цене из вашей корзины {age} дн. — могла измениться")
 
     if item.price and item.pack and offer.pack and item.pack.unit == offer.pack.unit:
         mine, theirs = unit_price(item.price, item.pack), unit_price(offer.price, offer.pack)

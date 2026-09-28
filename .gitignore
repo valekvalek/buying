@@ -4,3 +4,6 @@ venv/
 __pycache__/
 *.pyc
 .pytest_cache/
+data/user_prices.json
+data/user_prices.tmp
+data/user_prices.enc

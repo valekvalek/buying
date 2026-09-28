@@ -28,6 +28,26 @@ jobs:
           cache: pip
       - run: pip install -r requirements.txt
       - run: python -m pytest -q
+
+      # Цены из ваших корзин (Озон Фреш) между запусками хранятся в кэше GitHub
+      # в зашифрованном виде (ключ — секрет TELEGRAM_BOT_TOKEN, чужим он недоступен).
+      - name: Восстановить сохранённые цены
+        uses: actions/cache/restore@v4
+        with:
+          path: data/user_prices.enc
+          key: user-prices-${{ github.run_id }}
+          restore-keys: user-prices-
+      - name: Расшифровать сохранённые цены
+        env:
+          KEY: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: |
+          if [ -f data/user_prices.enc ] && [ -n "$KEY" ]; then
+            openssl enc -d -aes-256-cbc -pbkdf2 -pass env:KEY -in data/user_prices.enc -out data/user_prices.json \
+              && echo "Сохранённые цены восстановлены" || echo "::warning::Не удалось расшифровать сохранённые цены"
+          else
+            echo "Сохранённых цен пока нет"
+          fi
+
       - name: Работа бота
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
@@ -50,3 +70,19 @@ jobs:
           # 124 — бот остановлен по таймеру, это нормальное завершение
           if [ "$code" -eq 124 ] || [ "$code" -eq 0 ]; then exit 0; fi
           exit "$code"
+
+      - name: Зашифровать цены
+        if: always()
+        env:
+          KEY: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: |
+          if [ -f data/user_prices.json ] && [ -n "$KEY" ]; then
+            openssl enc -aes-256-cbc -pbkdf2 -salt -pass env:KEY -in data/user_prices.json -out data/user_prices.enc
+            rm -f data/user_prices.json
+          fi
+      - name: Сохранить цены до следующего запуска
+        if: always() && hashFiles('data/user_prices.enc') != ''
+        uses: actions/cache/save@v4
+        with:
+          path: data/user_prices.enc
+          key: user-prices-${{ github.run_id }}-${{ github.run_attempt }}

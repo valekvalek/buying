@@ -31,6 +31,9 @@ HELP = """Пришлите корзину одним из способов:
 3) Скриншотом корзины — только если задан ключ ANTHROPIC_API_KEY (необязательно)
 
 Я сопоставлю товары в Пятёрочке, Самокате, Яндекс Лавке, ВкусВилле и Чижике и посчитаю, где дешевле.
+
+Озон Фреш: пришлите свою корзину оттуда (первой строкой «Озон Фреш») — я запомню цены
+и буду учитывать их в следующих сравнениях с пометкой даты. Текущие цены Озона я не вижу.
 ВкусВилл — реальные цены, остальные сервисы — mock-данные (вымышленные)."""
 
 
@@ -58,7 +61,8 @@ async def _run(update: Update, items) -> None:
         f"Нашёл позиций: {len(items)}. Сопоставляю товары"
         + (" через LLM…" if config.LLM_ENABLED else " по правилам…"))
     try:
-        messages = await asyncio.to_thread(analyze, items, config.REGION)
+        user_id = update.effective_user.id if update.effective_user else None
+        messages = await asyncio.to_thread(analyze, items, config.REGION, user_id)
     except Exception:
         log.exception("Ошибка анализа")
         await update.message.reply_text("Произошла ошибка при расчёте. Подробности — в консоли, где запущен бот.")

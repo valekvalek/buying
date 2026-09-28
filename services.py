@@ -7,6 +7,7 @@ SERVICE_NAMES = {
     "lavka": "Яндекс Лавка",
     "vkusvill": "ВкусВилл",
     "chizhik": "Чижик",
+    "ozon_fresh": "Озон Фреш",
 }
 
 _ALIASES = {
@@ -15,6 +16,7 @@ _ALIASES = {
     "lavka": ["яндекс лавка", "лавка", "yandex lavka", "lavka"],
     "vkusvill": ["вкусвилл", "вкус вилл", "vkusvill"],
     "chizhik": ["чижик", "chizhik"],
+    "ozon_fresh": ["озон фреш", "ozon fresh", "озон", "ozon"],
 }
 
 
