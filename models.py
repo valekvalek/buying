@@ -36,6 +36,7 @@ class Offer:
     fetched_at: str      # когда получена цена (ISO-дата)
     source: str          # "mock" или название реального источника
     in_stock: bool = True
+    by_weight: bool = False   # весовой товар: цена за 1 кг, количество — в кг
 
 
 @dataclass
@@ -63,7 +64,7 @@ class Match:
     kind: str = "none"          # "exact" | "analog" | "none"
     reasons: list[str] = field(default_factory=list)
     uncertain: bool = False
-    packs_needed: int = 0       # сколько упаковок купить, чтобы набрать тот же объём
+    packs_needed: float = 0     # сколько упаковок купить (для весового товара — сколько кг)
 
     @property
     def cost(self) -> float:

@@ -91,9 +91,13 @@ def validate(item: CartItem, offer: Offer, kind: str, reason: str, confidence: f
             reasons.append("цена за кг/л сильно отличается — возможно, другой товар")
 
     same_unit = item.pack and offer.pack and item.pack.unit == offer.pack.unit
+    if offer.by_weight and same_unit:
+        quantity = round(item.total_amount, 3)   # весовой товар берём ровно по весу
+    else:
+        quantity = packs_needed(item.total_amount if same_unit else None, offer.pack, item.qty)
     return Match(
         item=item, service=offer.service, offer=offer, kind=kind, reasons=reasons, uncertain=uncertain,
-        packs_needed=packs_needed(item.total_amount if same_unit else None, offer.pack, item.qty),
+        packs_needed=quantity,
     )
 
 
@@ -131,7 +135,10 @@ def _match_heuristic(item: CartItem, candidates: dict[str, list[Offer]]) -> dict
                 best, best_score = o, score
         if best is None or best_score < 0.2:
             continue
-        exact = item.brand.lower() == best.brand.lower() and same_pack(item.pack, best.pack)
+        # бренд может быть только в названии (у ВкусВилла нет отдельного поля бренда)
+        same_brand = item.brand.lower() == best.brand.lower() or (
+            bool(item.brand) and not best.brand and item.brand.lower() in best.name.lower())
+        exact = same_brand and same_pack(item.pack, best.pack)
         m = validate(item, best, "exact" if exact else "analog", "", confidence=0.0)
         m.reasons.insert(0, "подобрано без LLM, по словам в названии")
         out[sid] = m

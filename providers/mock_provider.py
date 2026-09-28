@@ -54,6 +54,9 @@ class MockProvider(PriceProvider):
             for _, p in scored[:limit]
         ]
 
+    def source_note(self) -> str:
+        return f"mock — вымышленные цены и доставка (дата данных {load_catalog()['fetched_at'][:10]})"
+
     def delivery_terms(self, region: str) -> DeliveryTerms:
         catalog = load_catalog()
         d = self._data

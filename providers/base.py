@@ -2,8 +2,9 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
+from typing import Optional
 
-from models import DeliveryTerms, Offer
+from models import DeliveryTerms, Match, Offer
 
 
 class PriceProvider(ABC):
@@ -20,6 +21,14 @@ class PriceProvider(ABC):
     @abstractmethod
     def delivery_terms(self, region: str) -> DeliveryTerms:
         """Стоимость доставки, порог бесплатной доставки и минимальная сумма заказа."""
+
+    def cart_link(self, matches: list[Match]) -> Optional[str]:
+        """Ссылка на корзину с уже добавленными товарами, если сервис это официально умеет."""
+        return None
+
+    def source_note(self) -> str:
+        """Откуда цены — для заголовка отчёта."""
+        return "источник не указан"
 
     def order_instruction(self) -> str:
         """Как оформить заказ вручную (автозаказа в проекте нет и не будет)."""
